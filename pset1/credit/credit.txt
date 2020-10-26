@@ -1,0 +1,68 @@
+prompt user for credit card number using 'long'
+if the number is not positive or a numeric, go to previous line
+
+Run checksum
+
+    Modulating by 10 returns the last digit of the sequence
+    dividing by 10 removes the last digit from a sequence - returns the sequence minus the last digit
+    div10 until answer is < 1
+    can add a counter to div10 to count the number of digits
+
+    loop until 'div' < 1
+        ones = number mod 10    (modulate number by 10 to get the last digit 'ones')
+        testNumber = number / 10    (divide number by 10 to remove the last digit)
+        counter ++              (add 1 to count to count the number of digits)
+
+        //multiply every second digit by 2 and add its digits to 'everyOther' (multiply 'everyOther' by 10 then add digit) (everyOther = (everyOther * 10) + ones)
+
+        if count >1 && count mod 2 = 0
+            ones = ones * 2
+            if ones > 9
+                everyOther = everyOther + (ones mod 10)
+                everyOther = everyOther + (ones div 10)
+
+            everyOther = everyOther + ones
+
+        if count mod 2 = 1
+            notOther = notOther + ones
+
+    when loop is done:
+    if (everyOther + notOther) mod 10 = 0
+
+        check card type
+(AMEX)  if count = 15 && round(number/(10^(count-1))) = 3 && ( round(number/(10^(count-2))) = 4 || round(number/(10^(count-2))) = 7 )
+            return AMEX\n
+
+        else if count = 16 && round(number/(10^(count-1))) = 5 && round(number/(10^(count-2))) >= 1 && round(number/(10^(count-2))) <= 5
+            return MASTERCARD\n
+
+        else if ( count = 13 || COUNT = 16 ) && round(number/(10^(count-1))) = 4
+            return visa\n
+
+        else
+            return INVALID\n
+
+
+    starting from the second to last digit, multiply every other digit by 2
+    add each digit of the results together
+    add this result to the sum of other digit starting from the last digit of the card number
+    if the result mod 10 = 0, the card is valid
+    if checksum fails, return INVALID\n
+    if the checksum passes, continue to check card type
+
+Check AMEX
+    number must contain 15 digits
+    The first digit must be 3
+    the second digit must be 4 or 7
+    return AMEX\n
+
+Check MASTERCARD
+    number must contain 16 digits
+    first digit must be 5
+    second digit must be 1-5
+    return MASTERCARD\n
+
+Check VISA
+    number must contain 13 or 16 digits
+    number must start with 4
+    return VISA\n

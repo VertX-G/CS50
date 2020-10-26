@@ -1,0 +1,8 @@
+get a height (i) from the user
+if (i) is larger than 0 and smaller or equal to 8, continue, else return to line1
+
+make a loop that iterates (i) number of times
+    for the first run, make (i-1) amount of spaces, (i*1) number of # and a new line
+    for the second run, make (i-2) amount of spaces, (i*2) number of # and a new line
+    and so on...
+
