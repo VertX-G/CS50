@@ -274,18 +274,18 @@ void merge(int l, int m, int r)
    while (i < n1 && j < n2)
    {
        // preferences[pairs[i].winner][pairs[i].loser]
-        int pL = preferences[pairs[i].winner][pairs[i].loser];
-        int pR = preferences[pairs[j].winner][pairs[j].loser];
+        int pL = preferences[L[i].winner][L[i].loser];
+        int pR = preferences[R[j].winner][R[j].loser];
         if (pL <= pR)
 //       if (L[i] <= R[j])
        {
            pairs[k] = R[j];
-           i++;
+           j++;
        }
        else
        {
            pairs[k] = L[i];
-           j++;
+           i++;
        }
        k++;
    }
@@ -299,10 +299,10 @@ void merge(int l, int m, int r)
    }
 
    // Copy remaining elements of R[], if there are any remaining
-   while (i < n1)
+   while (j < n2)
    {
-       pairs[k] = R[i];
-       i++;
+       pairs[k] = R[j];
+       j++;
        k++;
    }
 }
