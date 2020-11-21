@@ -35,6 +35,7 @@ void lock_pairs(void);
 void print_winner(void);
 void sort(int l, int r);
 void merge(int l, int m, int r);
+bool check_cycle(int w, int l);
 
 int main(int argc, string argv[])
 {
@@ -150,7 +151,7 @@ void record_preferences(int ranks[])
         }
     }
 
-
+/*
    // Test that prints out the entire 'preferences' 2D array
 
      for (int i = 0; i < candidate_count; i++)
@@ -162,7 +163,7 @@ void record_preferences(int ranks[])
         }
         printf("\n");
     }
-
+*/
 
 
     return;
@@ -188,9 +189,11 @@ void add_pairs(void)
                 pairs[pair_count].winner = i;
                 pairs[pair_count].loser = j;
 
+                // test print
+/*
                 // Test to check pairs are generated correctly
                 printf("Pair%i\nWinner = %i\nLoser = %i\n", pair_count, pairs[pair_count].winner, pairs[pair_count].loser);
-
+*/
                 pair_count++;
 
             }
@@ -218,16 +221,17 @@ void sort_pairs(void)
 
     sort(0, pair_count-1);
 
+    // test print
+/*
     for (int i = 0; i < pair_count; i++)
     {
         printf("\nPair %i:\nWinner: %i\nLoser: %i\nStrength of Victory:%i\n", i, pairs[i].winner, pairs[i].loser, preferences[pairs[i].winner][pairs[i].loser]);
     }
-
+*/
     return;
 }
 
-/*--------------------------------------------------------------------------------------------------------------------*/
-
+// Mergesort the pairs
 void sort(int l, int r)
 {
     if (l < r)
@@ -277,7 +281,6 @@ void merge(int l, int m, int r)
         int pL = preferences[L[i].winner][L[i].loser];
         int pR = preferences[R[j].winner][R[j].loser];
         if (pL <= pR)
-//       if (L[i] <= R[j])
        {
            pairs[k] = R[j];
            j++;
@@ -307,22 +310,151 @@ void merge(int l, int m, int r)
    }
 }
 
-/*--------------------------------------------------------------------------------------------------------------------*/
-
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
     // TODO
     // after pairs are sorted, start locking them from the largest difference pair downward
-    // do not lock if locking will result in loop (dont know how to test for this yet)
+    // do not lock if locking will result in loop
+    // do not create lock if loser column is the only one with no "true" in it
 
+    for(int i = 0; i < pair_count; i++)
+    {
+        int w = pairs[i].winner;
+        int l = pairs[i].loser;
+
+        // do not lock if it will result in a cycle
+        // check if the loser of this pair is already the source
+        // if it is not the source, lock the pair
+        // if it is the source, do not lock
+        if(check_cycle(w, l) == true)
+        {
+            return;
+        }
+        else
+        {
+            locked[w][l] = true;
+        }
+    }
     return;
+}
+
+// check whether the candidate is the source of the graph
+bool check_cycle(int w, int l)
+{
+
+/*
+    // If the column for the candidate passed contains any true values, it is not the source, return false
+    for(int i = 0; i < pair_count; i++)
+    {
+        if(locked[i][candidate] == true)
+        {
+            return false;
+        }
+    }
+
+    // if it does not contain any true values, it could be the source
+    for(int i = 0; i < pair_count; i++)
+    {
+        if (i != candidate)
+        {
+            bool check = false;
+            for(int j = 0; j < pair_count; j++)
+            {
+                if(locked[j][i] == true)
+                {
+                    check = true;
+                }
+            }
+
+            // check whether any other columns also contain no true values
+            // if they do, the passed candidate cannot be the source, return false
+            if(check == false)
+            {
+                return false;
+            }
+        }
+    }
+
+    // if the return candidate column is the only one that contains no true values, it is the source, return true
+    return true;
+
+*/
+
+    //Look at a pair
+    //If the loser is not a winner in any existing locked pair, then lock the pair
+    //If the loser is a winner in an existing locked pair:
+    //Look at that pair
+    //If the loser is not a winner in any existing locked pair, then lock the pair
+    //If the loser is a winner in an existing locked pair:
+    //Look at that pair
+    //etc, etc etc . . .
+
+    for(int i = 0; i < pair_count; i++)
+    {
+        if(locked[l][i] == true)
+        {
+            if(i == l)
+            {
+                return true;
+            }
+            check_cycle(l, i);
+        }
+    }
+    return false;
+
 }
 
 // Print the winner of the election
 void print_winner(void)
 {
     // TODO
-    return;
+    // Winner is source of the graph
+    // source of the graph is the only column in the 'locked' array that has no 'true' values
+
+/*
+    // print source using 'check source' function
+    for(int i = 0; i < pair_count; i++)
+    {
+        if(check_cycle(i) == true)
+        {
+            printf("%s\n", candidates[i]);
+            return;
+        }
+    }
+*/
+
+    for(int i = 0; i < pair_count; i++)
+    {
+        bool check = false;
+        for(int j = 0; j < pair_count; j++)
+        {
+            if(locked[j][i] == true)
+            {
+                check = true;
+            }
+        }
+
+        if(check == false)
+        {
+            printf("%s\n", candidates[i]);
+            return;
+        }
+    }
+
+    // find winner using 'locked' array
+
+/*
+    string winner;
+
+    for(int i = 0; i < pair_count; i++)
+    {
+        for(int j = 0; j < pair_count; j++)
+        {
+            if
+        }
+    }
+*/
+//    return;
 }
 
