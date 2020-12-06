@@ -96,6 +96,8 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     // create a copy of the image
-    //
+    // Iterate through each pixel of the original image
+    // For each pixel, calculate its new RGBTRIPLE values based on the values of the values of the copied image
+    // when complete, delete the copied image
     return;
 }
