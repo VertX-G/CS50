@@ -19,6 +19,8 @@ int capInt(int num, int min, int max)
     }
 }
 
+//int average()
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -99,5 +101,65 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     // Iterate through each pixel of the original image
     // For each pixel, calculate its new RGBTRIPLE values based on the values of the values of the copied image
     // when complete, delete the copied image
+
+    //RGBTRIPLE c = malloc(sizeof(RGBTRIPLE));
+
+    int h = height;
+    int w = width;
+
+    RGBTRIPLE temp_copy[height][width];
+    for (int i = 0; i < width; i++)
+    {
+        for (int j = 0; j < height; j++)
+        {
+            temp_copy[j][i].rgbtRed = image[j][i].rgbtRed;
+            temp_copy[j][i].rgbtGreen = image[j][i].rgbtGreen;
+            temp_copy[j][i].rgbtBlue = image[j][i].rgbtBlue;
+        }
+    }
+
+
+    for (int i = 0; i < width; i++)
+    {
+        for (int j = 0; j < height; j++)
+        {
+            // take average of 9 surrounding pixels
+            // rework edges, currently it is counting the pixels along edges multiple times
+            // by normalising out of bound pixels to 0 or max
+            // fix by disregarding these pixels rather than double counting them
+            // maybe use if functions
+            image[j][i].rgbtRed = (temp_copy[capInt(j-1, 0, h-1)][capInt(i-1, 0, w-1)].rgbtRed
+                                    + temp_copy[capInt(j-1, 0, h-1)][capInt(i, 0, w-1)].rgbtRed
+                                    + temp_copy[capInt(j-1, 0, h-1)][capInt(i+1, 0, w-1)].rgbtRed
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i-1, 0, w-1)].rgbtRed
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i, 0, w-1)].rgbtRed
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i+1, 0, w-1)].rgbtRed
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i-1, 0, w-1)].rgbtRed
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i, 0, w-1)].rgbtRed
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i+1, 0, w-1)].rgbtRed)
+                                    / 9;
+            image[j][i].rgbtGreen = (temp_copy[capInt(j-1, 0, h-1)][capInt(i-1, 0, w-1)].rgbtGreen
+                                    + temp_copy[capInt(j-1, 0, h-1)][capInt(i, 0, w-1)].rgbtGreen
+                                    + temp_copy[capInt(j-1, 0, h-1)][capInt(i+1, 0, w-1)].rgbtGreen
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i-1, 0, w-1)].rgbtGreen
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i, 0, w-1)].rgbtGreen
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i+1, 0, w-1)].rgbtGreen
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i-1, 0, w-1)].rgbtGreen
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i, 0, w-1)].rgbtGreen
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i+1, 0, w-1)].rgbtGreen)
+                                    / 9;
+            image[j][i].rgbtBlue = (temp_copy[capInt(j-1, 0, h-1)][capInt(i-1, 0, w-1)].rgbtBlue
+                                    + temp_copy[capInt(j-1, 0, h-1)][capInt(i, 0, w-1)].rgbtBlue
+                                    + temp_copy[capInt(j-1, 0, h-1)][capInt(i+1, 0, w-1)].rgbtBlue
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i-1, 0, w-1)].rgbtBlue
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i, 0, w-1)].rgbtBlue
+                                    + temp_copy[capInt(j, 0, h-1)][capInt(i+1, 0, w-1)].rgbtBlue
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i-1, 0, w-1)].rgbtBlue
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i, 0, w-1)].rgbtBlue
+                                    + temp_copy[capInt(j+1, 0, h-1)][capInt(i+1, 0, w-1)].rgbtBlue)
+                                    / 9;
+        }
+    }
+
     return;
 }
