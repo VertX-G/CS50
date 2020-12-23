@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <cs50.h>
 #include <string.h>
+#include <stdint.h>
+
+typedef uint8_t BYTE;
 
 /*
     Program should accept 1 command line argument - the name of a forensic image from which to recover JPEGs
@@ -47,7 +50,12 @@ int main(int argc, char *argv[])
         return error("Please enter a command line argument with the name of the forensic image you want to recover.");
     }
 
+    // give file a variable name
     string rawFileName = argv[1];
+    // declare buffer
+    BYTE buffer[512];
+    // variable to check for end of file
+    int eof;
 
     // open the file
     FILE *file = fopen(rawFileName, "r");
@@ -58,8 +66,25 @@ int main(int argc, char *argv[])
     // size = size of each element to read
     // number = number of elements to read
     // inptr = FILE * to read from
-    char buffer[512*3];
-    fread(buffer, 1, 512*3, file);
+
+
+    int testCounter = 0;
+
+    do
+    {
+        // read first 512 block into the buffer
+        eof = fread(buffer, 512, 1, file);
+
+        // test first 4 bytes of buffer for jpeg header
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff)// && buffer[3] == ... && )
+        {
+            // test prints
+            testCounter++;
+            printf("%i  ", testCounter);
+            printf("%x\n", buffer[3]);
+        }
+    }
+    while (eof == 1);
 
     //fclose(file);
 
@@ -89,14 +114,15 @@ int main(int argc, char *argv[])
     // fread returns the number of items of size 'size' were read
 
     // test print included command line argument
-    char d = 0xd8;
-    for(int i=0; i<512*3; i++)
+    //char d = 0xd8;
+/*
+    for(int i=0; i<4; i++)
     {
-        if (buffer[i] == d)
-        {
-            printf("%c\n", buffer[i]);
-        }
+        //if (buffer[i] == d)
+        //{
+            printf("%x\n", buffer[i]);
+        //}
 
     }
-
+*/
 }
