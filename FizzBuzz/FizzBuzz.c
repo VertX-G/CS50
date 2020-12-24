@@ -6,7 +6,7 @@ int main(void)
 {
     for (int i = 1; i <= 100; i++)
     {
-        int c = 0;
+        bool c = false;
 
         if (i % 3 == 0)
         {
