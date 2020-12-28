@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
     int testCounter = 0;
 
-    do
+    while (fread(buffer, 512, 1, rawFile) == 1)
     {
         // read first 512 block into the buffer
         //
@@ -87,13 +87,13 @@ int main(int argc, char *argv[])
         // size = size of each element to read
         // number = number of elements to read
         // inptr = FILE * to read from
-        eof = fread(buffer, 512, 1, rawFile);
+//        eof = fread(buffer, 512, 1, rawFile);
 
         // test first 4 bytes of buffer for jpeg header
         //
         // bitwise arithmetic:
         // (buffer[3] & 0xf0) == 0xe0
-        if (eof == 1 && buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff)// && buffer[3] == ... && )
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff)// && buffer[3] == ... && )
         {
             // test prints
             testCounter++;
@@ -154,7 +154,6 @@ int main(int argc, char *argv[])
 
 
     }
-    while (eof == 1);
 
     // if a file is created and the new block is not the start of a new jpeg
     // append to already open file
