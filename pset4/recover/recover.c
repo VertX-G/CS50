@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     char newFileName[8] = "###.jpg";
 
     // New File Number
-    int newFileNum =  0;
+    int newFileNum = -1;
 
     // declare buffer
     BYTE buffer[512];
@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     FILE * rawFile = fopen(rawFileName, "r");
 
     // open a new file
-    FILE * newFile = fopen(newFileName, "w");
+    FILE * newFile;// = fopen(newFileName, "w");
 
     int testCounter = 0;
 
@@ -108,31 +108,30 @@ int main(int argc, char *argv[])
             }*/
 
             // if this will be the first jpeg file
-/*            if (newFileName == "###.jpg")
+            if (newFileNum != -1)
             {
                 fclose(newFile);
                 // Start new JPEG file
                 //
                 // Generate new file name
-                sprintf(newFileName, "%03i.jpg", newFileNum);
                 // increment file name for next file
-                newFileNum ++;
+            /*    newFileNum ++;
+                sprintf(newFileName, "%03i.jpg", newFileNum);
 
                 // create a New File
                 newFile = fopen(newFileName, "w");
+                */
             }
-*/
 
-            fclose(newFile);
-
-            printf("%03i.jpg\n", newFileNum);
-            sprintf(newFileName, "%03i.jpg", newFileNum);
-            //newFileName = "000.jpg";
             // increment file name for next file
             newFileNum ++;
+            sprintf(newFileName, "%03i.jpg", newFileNum);
+            //newFileName = "000.jpg";
 
             // create a New File
             newFile = fopen(newFileName, "w");
+
+
 
 
             // write data to new file
@@ -148,7 +147,7 @@ int main(int argc, char *argv[])
         }
         // if a file has already been created, and the new block is not the start of a new jpeg
         // append to already open file
-        else if (fopen(newFileName, "a") != NULL && buffer[0] != 0xff && buffer[1] != 0xd8 && buffer[2] != 0xff)
+        else if (newFileNum != -1)
         {
             fwrite (buffer, 512, 1, newFile);
         }
@@ -163,6 +162,6 @@ int main(int argc, char *argv[])
     // Close Raw File
     fclose(rawFile);
     // Free newFileName allocated memory
-    free(newFileName);
+    //free(newFileName);
 
 }
