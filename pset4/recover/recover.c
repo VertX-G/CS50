@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     int strCharLen = 3; // "000"
     strCharLen += 4; // allow for ".jpg" filename extention
     strCharLen += 1; // allow for null termination character
-//    char * newFileName = malloc(strCharLen * sizeof(char));
+//    char* newFileName = malloc(strCharLen * sizeof(char));
 //    // after using malloc, always check to make sure it doesnt return NULL
 //    string newFileName = "###.jpg";
     char newFileName[8] = "###.jpg";
@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 
             // generate sequential name for new file
             sprintf(newFileName, "%03i.jpg", newFileNum);
+            // sprintf(*newFileName, "%03i.jpg", newFileNum);
 
             // create a new file to write to
             newFile = fopen(newFileName, "w");
