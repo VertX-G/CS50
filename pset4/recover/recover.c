@@ -46,6 +46,7 @@ int main(int argc, char *argv[])
     strCharLen += 4; // allow for ".jpg" filename extention
     strCharLen += 1; // allow for null termination character
 //    char * newFileName = malloc(strCharLen);
+//    // after using malloc, always check to make sure it doesnt return NULL
 //    string newFileName = "###.jpg";
     char newFileName[8] = "###.jpg";
 
