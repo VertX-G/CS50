@@ -80,27 +80,23 @@ person *create_family(int generations)
 // Free `p` and all ancestors of `p`.
 void free_family(person *p)
 {
-    /*
     // TODO: Handle base case
-    if (p->parents[0] == NULL && p->parents[1] == NULL)
+    if (p == NULL)
     {
-        free(p);
-        return;
+        return:
     }
 
     // TODO: Free parents
-    else
-    {
-        free_family(p->parents[0]);
-        free_family(p->parents[1]);
-    }
+    free_family(p->parents[0]);
+    free_family(p->parents[1]);
 
     // TODO: Free child
-
     free(p);
-    return;
-    */
-    
+
+    /*
+    // This implementation would crash if the tree were entirely empty
+    // because there will not be a p->parents[] to check in the first place
+
     if (p->parents[0] != NULL && p->parents[1] != NULL)
     {
         free_family(p->parents[0]);
@@ -109,6 +105,7 @@ void free_family(person *p)
 
     free(p);
     return;
+    */
 }
 
 // Print each family member and their alleles.
