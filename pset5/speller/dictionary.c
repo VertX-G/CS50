@@ -41,36 +41,43 @@ unsigned int hash(const char *word)
 bool load(const char *dictionary)
 {
     // TODO
-
     // Open dictionary file
     FILE *fp = fopen(dictionary, "r");
-    if (fp == NULL)                                         // remember to check if fopen() returns NULL
+
+    // return false if fopen() fails
+    if (fp == NULL)
     {
         return false;
     }
 
+    // declare placeholder for word
     char word[LENGTH+1];
+    // declare placeholder for hashedValue
     int hashedValue;
 
-    // read strings from the file one at a time (loop)
-    // find out whether the below only reads one line at a time, or how to use "\n" to indicate end of line
-    while (fscanf(fp, "%s", word) != EOF)                  // until fscanf returns EOF
+    // read strings from the file one at a time until the end of the file
+    while (fscanf(fp, "%s", word) != EOF)
     {
-        // Create a new node for each word
-        node *n = malloc(sizeof(node)); // remember to check if malloc returns NULL
+        // Create a placeholder node for each word
+        node *n = malloc(sizeof(node));
+        // remember to check if malloc returns NULL
+        if (n == NULL)
+        {
+            return false;
+        }
         // copy word into node
         strcpy(n->word, word);
         // hash word to obtain a hash value
         hashedValue = hash(word);
         // insert node into hash table at that location
         n->next = table[hashedValue];
-        table[hashedValue] = n; 
+        table[hashedValue] = n;
     }
-    
+
     // close file
     fclose(fp);
-    
-    // if successfully loaded entire dictionary into memory
+
+    // if entire dictionary successfully loaded into memory
     // return true
     return true;
 }
@@ -86,5 +93,8 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
+    // iterate through table[]
+    // follow every node->next untill node == NULL
+    // free(n)
     return false;
 }
