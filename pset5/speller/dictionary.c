@@ -34,6 +34,15 @@ bool check(const char *word)
 unsigned int hash(const char *word)
 {
     // TODO
+
+    // THE IDEAL HASH ALGORITHM
+    // Perfect Hash Function (PHF)= A hash function for which there are no collisions (duplicates)
+    // Minimal Perfect Hash Function (MPHF) = A PHF for which the hash table has no holes in it (that is, the hash table is only as big as the search list)
+
+    //
+    // no need to find middle ground to get smaller array with a little more collisions
+    // will not save memory as everything needs to get loaded in anyway
+
     return 0;
 }
 
@@ -93,8 +102,28 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
+    node *n = malloc(sizeof(node));
     // iterate through table[]
-    // follow every node->next untill node == NULL
+    for (int i = 0; i < N; i++)
+    {
+        if (table[i] != NULL)
+        {
+            n->next = table[i];
+            
+            while (n != NULL)
+            {
+                node *tmp = n->next;
+                
+                free(n);
+                
+                n = tmp;
+            }
+        }
+    }
+    // follow every node->next until node == NULL
     // free(n)
-    return false;
+    return true;
+    //return false;
 }
+
+
