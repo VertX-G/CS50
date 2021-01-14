@@ -21,6 +21,9 @@ const unsigned int N = 10;
 // Hash table
 node *table[N];
 
+// variable to count the words entered into the dictionary
+int dictionary_size = 0;
+
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
@@ -81,6 +84,9 @@ bool load(const char *dictionary)
         // insert node into hash table at that location
         n->next = table[hashedValue];
         table[hashedValue] = n;
+
+        // increment dictionary word count
+        dictionary_size++;
     }
 
     // close file
@@ -95,35 +101,39 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-    return 0;
+    return dictionary_size;
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
     // TODO
+    // create a new node that will be the node we use to free each node in the list
     node *n = malloc(sizeof(node));
     // iterate through table[]
     for (int i = 0; i < N; i++)
     {
+        // if table[i] is pointing to a list
         if (table[i] != NULL)
         {
+            // set the new node as the header to that list
             n->next = table[i];
-            
+
+            // loop through each list
             while (n != NULL)
             {
+                // hold on to next node so it isnt orphaned
                 node *tmp = n->next;
-                
+
+                // free current node
                 free(n);
-                
+
+                // set current node to next node
                 n = tmp;
             }
         }
     }
-    // follow every node->next until node == NULL
-    // free(n)
     return true;
-    //return false;
 }
 
 
