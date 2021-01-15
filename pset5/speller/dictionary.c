@@ -22,7 +22,7 @@ const unsigned int N = 10;
 node *table[N];
 
 // variable to count the words entered into the dictionary
-int dictionary_size = 0;
+unsigned int dictionary_size = 0;
 
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
