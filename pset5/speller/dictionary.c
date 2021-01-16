@@ -131,7 +131,8 @@ bool unload(void)
 {
     // TODO
     // create a new node that will be the node we use to free each node in the list
-    node *n = malloc(sizeof(node));
+    node *cursor = NULL;
+    node *tmp = NULL;
     // iterate through table[]
     for (int i = 0; i < N; i++)
     {
@@ -139,19 +140,19 @@ bool unload(void)
         if (table[i] != NULL)
         {
             // set the new node as the header to that list
-            n->next = table[i];
+            cursor = table[i];
 
             // loop through each list
-            while (n != NULL)
+            while (cursor != NULL)
             {
                 // hold on to next node so it isnt orphaned
-                node *tmp = n->next;
+                tmp = cursor->next;
 
                 // free current node
-                free(n);
+                free(cursor);
 
                 // set current node to next node
-                n = tmp;
+                cursor = tmp;
             }
         }
     }
