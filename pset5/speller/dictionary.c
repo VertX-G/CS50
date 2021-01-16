@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
 
 #include "dictionary.h"
 
@@ -16,7 +17,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 10;
+const unsigned int N = 26;
 
 // Hash table
 node *table[N];
@@ -28,6 +29,27 @@ unsigned int dictionary_size = 0;
 bool check(const char *word)
 {
     // TODO
+
+    // hash word
+    int hashedValue = hash(word);
+    // create pointer to search for word in dictionary
+    // set pointer to hashed table index
+    node *checker = table[hashedValue];
+
+    // iterate through list
+    while (checker != NULL)
+    {
+        // if the word can be found in the list
+        if (strcasecmp(checker->word, word) == 0)
+        {
+            return true;
+        }
+        // if the word is not found
+        // check the next word in the list
+        checker = checker->next;
+    }
+    // if the table index was NULL
+    // or the word could not be found in the list
     return false;
 }
 
@@ -135,5 +157,3 @@ bool unload(void)
     }
     return true;
 }
-
-

@@ -167,11 +167,11 @@ int main(int argc, char *argv[])
     printf("\nWORDS MISSPELLED:     %d\n", misspellings);
     printf("WORDS IN DICTIONARY:  %d\n", n);
     printf("WORDS IN TEXT:        %d\n", words);
-    printf("TIME IN load:         %.2f\n", time_load);
-    printf("TIME IN check:        %.2f\n", time_check);
-    printf("TIME IN size:         %.2f\n", time_size);
-    printf("TIME IN unload:       %.2f\n", time_unload);
-    printf("TIME IN TOTAL:        %.2f\n\n",
+    printf("TIME IN load:         %.6f\n", time_load);
+    printf("TIME IN check:        %.6f\n", time_check);
+    printf("TIME IN size:         %.6f\n", time_size);
+    printf("TIME IN unload:       %.6f\n", time_unload);
+    printf("TIME IN TOTAL:        %.6f\n\n",
            time_load + time_check + time_size + time_unload);
 
     // Success
