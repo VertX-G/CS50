@@ -2,9 +2,10 @@
 
 #include <stdbool.h>
 #include <string.h>
+#include <strings.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <ctype.h>
 
 #include "dictionary.h"
 
@@ -17,10 +18,17 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 26;
+// size of array ±2x size of dataset
+const unsigned int N = 131072; //2^17
 
 // Hash table
 node *table[N];
+
+/*
+// test prints and varriables to finetune hash function
+// Calculate the largest hash number
+int hashMax = 0;
+*/
 
 // variable to count the words entered into the dictionary
 unsigned int dictionary_size = 0;
@@ -63,12 +71,140 @@ unsigned int hash(const char *word)
     // THE IDEAL HASH ALGORITHM
     // Perfect Hash Function (PHF)= A hash function for which there are no collisions (duplicates)
     // Minimal Perfect Hash Function (MPHF) = A PHF for which the hash table has no holes in it (that is, the hash table is only as big as the search list)
+    
+    // djb2
+    // http://www.cse.yorku.ca/~oz/hash.html
+    
+    unsigned long hash = 5381;
+    int c;
+    
+    // iterate through each letter of the word until you get the null terminator
+    for (int i = 0; word[i] != '\0'; i++)
+    {
+        // calculate a hash for that letter
+        c = tolower(word[i]);
+        hash = ((hash << 5) + hash) + c; // hash * 33 + c
+    }
+    
+    /*
+    // test prints and varriables to finetune hash function
+    // calculate the largest hash number
+    if (hashMax < hash)
+    {
+        hashMax = hash;
+    }
+    */
+    
+    // return the hash number as a mod of the array size
+    return hash % N;
+    
+    /*-------------------------------------------------------------------------------------------------------*/
+    
+    /*    
+    // hash only first letter
+    int i = tolower(word[0])-97;
+    return i;
+    */
+    
+    /*-------------------------------------------------------------------------------------------------------*/
+    
+    /*   
+    // hash to add all letters together
+    int sum = 0;
+    for (int j = 0; word[j] != '\0'; j++)
+    {
+        sum += tolower(word[j]);
+    }
+    
+    if (hashMax < sum)
+    {
+        hashMax = sum;
+    }
+    
+    return sum % N;
+    */
+    
+    /*-------------------------------------------------------------------------------------------------------*/
+    
+    /*
+    // hash that multiplies letters together based on their position
+    int i = 0;
+    int k = 31;
+    for (int j = 0; word[j] != '\0'; j++)
+    {
+        i += (tolower(word[j]) * j * k);
+    }
+    
+    if (hashMax < i)
+    {
+        hashMax = i;
+    }
+    
+    return i % N;
+    */    
+    
+    /*-------------------------------------------------------------------------------------------------------*/
+    
+    /*    
+    // K&R Version 2
+    // https://stackoverflow.com/a/45641002
+    int i = 0;
+    for (int j = 0; word[j] != '\0'; j++)
+    {
+        i = tolower(word[j]) + 31 * i;
+    }
+    
+    if (hashMax < i)
+    {
+        hashMax = i;
+    }
+    
+    return i % N;
+    */
+    
+    /*-------------------------------------------------------------------------------------------------------*/
+    
+    /*
+    // https://stackoverflow.com/a/2624210
 
-    //
-    // no need to find middle ground to get smaller array with a little more collisions
-    // will not save memory as everything needs to get loaded in anyway
+    int i = 7;
+    for (int j = 0; word[j] != '\0'; j++)
+    {
+        i = i*31 + tolower(word[j]);
+    }
+    
+    if (hashMax < i)
+    {
+        hashMax = i;
+    }
+    
+    return i % N;
+    */
+    
+    /*-------------------------------------------------------------------------------------------------------*/
+    
+    /*
+    // https://stackoverflow.com/a/7666799
+    unsigned int hash = 0;
+    unsigned int i = 0;
+    for(hash = i = 0;word[i] != '\0'; i++)
+    {
+        hash += tolower(word[i]);
+        hash += (hash << 10);
+        hash ^= (hash >> 6);
+    }
+    hash += (hash << 3);
+    hash ^= (hash >> 11);
+    hash += (hash << 15);
+    
+    if (hashMax < (hash*-1))
+    {
+        hashMax = hash;
+    }
+    
+    return hash % N;
+    */
 
-    return 0;
 }
 
 // Loads dictionary into memory, returning true if successful, else false
@@ -85,7 +221,7 @@ bool load(const char *dictionary)
     }
 
     // declare placeholder for word
-    char word[LENGTH+1];
+    char word[LENGTH + 1];
     // declare placeholder for hashedValue
     int hashedValue;
 
@@ -130,6 +266,16 @@ unsigned int size(void)
 bool unload(void)
 {
     // TODO
+    
+    
+    /*
+    // test prints and varriables to finetune hash function
+    printf("\nhashMax = %i\n", hashMax);
+
+    int collisions = 0;
+    int blanks = 0;
+    */
+    
     // create a new node that will be the node we use to free each node in the list
     node *cursor = NULL;
     node *tmp = NULL;
@@ -145,6 +291,15 @@ bool unload(void)
             // loop through each list
             while (cursor != NULL)
             {
+                /*
+                // test prints and varriables to finetune hash function
+                // count number of collisions
+                if (cursor->next != NULL)
+                {
+                    collisions++;
+                }
+                */
+                
                 // hold on to next node so it isnt orphaned
                 tmp = cursor->next;
 
@@ -155,6 +310,20 @@ bool unload(void)
                 cursor = tmp;
             }
         }
+        
+        /*
+        // test prints and varriables to finetune hash function
+        // count number of blank indexes in array
+        else
+        {
+            blanks++;
+        }
+        */
     }
+    /*
+    // test prints and varriables to finetune hash function
+    printf("\nblanks = %i\n", blanks);
+    printf("\ncollisions = %i\n", collisions);
+    */
     return true;
 }
