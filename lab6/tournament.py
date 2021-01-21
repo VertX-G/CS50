@@ -14,16 +14,32 @@ def main():
     if len(sys.argv) != 2:
         sys.exit("Usage: python tournament.py FILENAME")
 
-    filename = argv[1]
+    filename = sys.argv[1]
+    
+    teams = []
 
     with open(filename, "r") as file:
         reader = csv.DictReader(file)
-        next(reader)
+        #next(reader)
         for row in reader:
-
-
-
-    teams = []
+            # this appends the dictionary to the list
+            teams.append(row)
+            # need to figure out how to cast the 'value' of the dictionary item from str to int
+            """
+            for 
+            
+            team = row[0]
+            rating = row[1]
+            teams.append(row)
+            """
+    
+    teamCount = 0
+    
+    for team in teams:
+        print(team)
+        teamCount += 1
+    print(f"Team Count = {teamCount}")
+        
     # TODO: Read teams into memory from file
 
     # with open(filename) as file:
