@@ -14,41 +14,39 @@ def main():
     if len(sys.argv) != 2:
         sys.exit("Usage: python tournament.py FILENAME")
 
+    # TODO: Read teams into memory from file
+
+    # declare 'filename' variable to record user input
     filename = sys.argv[1]
-    
+
+    # declare list for teams
     teams = []
 
+    # open the .csv in read mode
     with open(filename, "r") as file:
+        # read with .DictReader
+        # reads each row as a dictionary
+        # with the header row as the key names
         reader = csv.DictReader(file)
-        #next(reader)
+        # iterate over each row
         for row in reader:
-            # this appends the dictionary to the list
+            # iterate over the keys in the dictionary
+            for key in row:
+                # change the value of 'rating' to an int
+                row['rating'] = int(row['rating'])
+
+            # add the dictionary to the list
             teams.append(row)
-            # need to figure out how to cast the 'value' of the dictionary item from str to int
-            """
-            for 
-            
-            team = row[0]
-            rating = row[1]
-            teams.append(row)
-            """
-    
+
+    # declare variable to keep count of teams for testing
     teamCount = 0
-    
+    # test print the list
     for team in teams:
         print(team)
         teamCount += 1
     print(f"Team Count = {teamCount}")
-        
-    # TODO: Read teams into memory from file
 
-    # with open(filename) as file:
-        # reader = csv.DictReader(file)
 
-    # csv.DictReader to read teams from csv file
-    # key = team, value = rating
-    # make sure to convert rating to an int
-    # store each team as list of dictionaries
     # call simulate_tournament function
 
     counts = {}
