@@ -38,25 +38,79 @@ def main():
             # add the dictionary to the list
             teams.append(row)
 
-    # declare variable to keep count of teams for testing
-    teamCount = 0
-    # test print the list
+    '''
+    # test print the list of teams dictionaries
     for team in teams:
-        print(team)
-        teamCount += 1
-    print(f"Team Count = {teamCount}")
+        print(f"Teams = {team}")
+    print()
+    '''
 
-
-    # call simulate_tournament function
-
+    # declare a dictionary to hold the names of the teams and number of times they have won
     counts = {}
+
+    # OPTION 1:
+    # add all teams to the dictionary
+    # iterate through list of team dictionaries
+    for team in teams:
+        # for each 'team' dictionary in the list of 'teams' dictionaries
+        # add to the 'counts' dictionary
+        # the name of the current 'team' as the key, and 0 as value
+        # dictionaryName[CurrentListItem[keyName]]
+        counts[team['team']] = 0
+        '''
+        # test print for each line
+        print(f"Line = {team}")
+    print()
+    '''
+    '''
+    # OPTION 2:
+    # add all teams to the dictionary
+    # iterate through list of team dictionaries
+    for i in range(len(teams)):
+        # for each 'team' dictionary in the list of 'teams' dictionaries
+        # add to the 'counts' dictionary
+        # the name of the current 'team' as the key, and 0 as value
+        # dictionaryName[listName[listIndex][keyName]]
+        counts[teams[i]['team']] = 0
+
+        # test print for each line
+        print(f"Line = {teams[i]}")
+    print()
+    '''
+    '''
+    # test print 'counts' dictionary to see if all teams have been added
+    for item in counts.items():
+        print(f"Populated Counts = {item}")
+    print()
+    '''
     # TODO: Simulate N tournaments and keep track of win counts
-    # call simulate_tournament function
+    for i in range(N):
+
+        # run a simulation of the tournament
+        # and save the name of the winner in 'winner'
+        winner = simulate_tournament(teams)
+
+        # if the winner exists in the dictionary
+        # add a win to their count
+        if winner in counts:
+            counts[winner] += 1
+
+        # if the winner does not exist in the dictionary
+        # create a dictionary item for the winner
+        # and add the win to their count
+        else:
+            counts[winner] = 1
+
+    '''
+    #  test print each team and number of times they won
+    for item in counts.items():
+        print(f"Calculated Counts = {item}")
+    print()
+    '''
 
     # Print each team's chances of winning, according to simulation
     for team in sorted(counts, key=lambda team: counts[team], reverse=True):
         print(f"{team}: {counts[team] * 100 / N:.1f}% chance of winning")
-
 
 def simulate_game(team1, team2):
     """Simulate a game. Return True if team1 wins, False otherwise."""
@@ -84,8 +138,22 @@ def simulate_tournament(teams):
     """Simulate a tournament. Return name of winning team."""
     # TODO
     # call simulate_round function, accepts a list of teams and returns a list of winners
-    # Repeatedly simulate round until only one team is left
-    # return name of winning team to be used in counts dictionary
+
+    # declare variable to hold winning teams and ultimate winner
+    winner = teams
+
+    # loop until ultimate winner is found
+    while True:
+        winner = simulate_round(winner)
+
+        # if only 1 team left in 'winner', then its the ultimate winning team
+        if len(winner) == 1:
+            break
+
+    # grab only the name of the winning team
+    winnerName = winner[0].get('team')
+    # return the name of the winning team
+    return winnerName
 
 
 if __name__ == "__main__":
