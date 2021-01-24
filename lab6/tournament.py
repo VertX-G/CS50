@@ -30,10 +30,8 @@ def main():
         reader = csv.DictReader(file)
         # iterate over each row
         for row in reader:
-            # iterate over the keys in the dictionary
-            for key in row:
-                # change the value of 'rating' to an int
-                row['rating'] = int(row['rating'])
+            # change the value of 'rating' to an int
+            row['rating'] = int(row['rating'])
 
             # add the dictionary to the list
             teams.append(row)
@@ -143,15 +141,11 @@ def simulate_tournament(teams):
     winner = teams
 
     # loop until ultimate winner is found
-    while True:
+    while len(winner) > 1:
         winner = simulate_round(winner)
 
-        # if only 1 team left in 'winner', then its the ultimate winning team
-        if len(winner) == 1:
-            break
-
     # grab only the name of the winning team
-    winnerName = winner[0].get('team')
+    winnerName = winner[0]['team']
     # return the name of the winning team
     return winnerName
 
