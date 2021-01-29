@@ -1,1 +1,3 @@
+-- list the names of the top 5 songs in descending order of length
+
 SELECT name FROM songs ORDER BY duration_ms DESC LIMIT 5;

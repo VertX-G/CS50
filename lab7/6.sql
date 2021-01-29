@@ -1,1 +1,3 @@
-SELECT name FROM songs WHERE artist_id IN (SELECT id FROM artists WHERE name LIKE "Post Malone");
+-- get the name of all of the songs by "Post Malone"
+
+SELECT name FROM songs WHERE artist_id = (SELECT id FROM artists WHERE name LIKE "Post Malone");
