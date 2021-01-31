@@ -1,11 +1,3 @@
--- FIX --
 -- list titles of all movies which starred both Johnny Depp and Helena Bonham Carter
 
-SELECT title
-FROM people
-JOIN stars ON people.id = stars.person_id
-JOIN movies ON stars.movie_id = movies.id
-WHERE stars.movie_id
-
-WHERE people.name LIKE "Johnny Depp"
-AND people.name LIKE "Helena Bonham Carter";
+SELECT title FROM movies WHERE id IN (SELECT movie_id FROM stars WHERE person_id IN (SELECT id FROM people WHERE name LIKE "Johnny Depp")) AND id IN (SELECT movie_id FROM stars WHERE person_id IN (SELECT id FROM people WHERE name LIKE "Helena Bonham Carter"));
