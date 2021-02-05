@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<!--
+    contain at least four different .html pages, at least one of which is index.html
+    all pages must be accessible from all other pages through hyperlinks etc.
+    at least 10 distinct HTML tags besides <html>, <head>, <body> and <title>. Using tags (eg. <p>) multiple times still counts as just 1 of those 10.
+    Integrate one of more features from bootstrap
+    Have at least 1 stylesheet file of your own creation (styles.css), which uses at least 5 different CSS properties (i.e. font-size, margin, etc.)
+    Integrate one or more features of JavaScript into your site to make your site more interactive (i.e. add alerts at recurring interval, add interactivity to buttons, dropdowns or forms, etc.)
+    Ensure site scales to mobile and desktop browsers
+-->
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="scripts.js"></script>
+        <link href="styles.css" rel="stylesheet">
+
+        <title>toast</title>
+    </head>
+    <body>
+
+        <!-- source: https://getbootstrap.com/docs/4.0/components/navbar/ -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">toast</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">about</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="orders.html">orders<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="quotes.html">for the love of toast</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+
+
+        <div class='container'>
+            <div class='row justify-content-center'>
+                <div class='col-12'>
+                    <h1>toast orders</h1>
+                </div>
+            </div>
+            <div class='row justify-content-center'>
+                <div class='col-12'>
+                    <h2>please build your order below</h2>
+                </div>
+            </div>
+            <div class='row justify-content-center'>
+                <div class='col-lg-4 col-xs-12'>
+                    <form id='ordersForm'>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label>Bread Type</label>
+                                </td>
+                                <td>
+                                    <select name='breads' id='breads'>
+                                        <option value='White Bread'>White Bread</option>
+                                        <option value='Ciabatta'>Ciabatta</option>
+                                        <option value='French'>French</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Slices</label>
+                                </td>
+                                <td>
+                                    <input type='number' id='slices' name='slices' min='1' max='3' value='1' step='1'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Toastiness</label>
+                                </td>
+                                <td>
+                                    <input type='range' id='toastiness' name='toastiness' min='0' max='100' value='0'>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style='vertical-align:top'>
+                                    <label>Topping</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type='radio' id='cheese' name='topping' value='cheese' checked>
+                                        <label for='cheese'>cheese</label>
+                                    </div>
+                                    <div>
+                                        <input type='radio' id='berries' name='topping' value='berries' checked>
+                                        <label for='berries'>berries</label>
+                                    </div>
+                                    <div>
+                                        <input type='checkbox' id='syrup' name='topping' value='syrup' checked>
+                                        <label for='syrup'>syrup</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <input type='submit' value='Submit Order'>
+                    </form>
+                </div>
+
+                <div class='col-lg-8 col-xs-12'>
+                    <img src='https://images.amcnetworks.com/bbcamerica.com/wp-content/uploads/2013/06/Toast.jpg' class='img-responsive center-block' alt='your toast order'>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<!--
+    contain at least four different .html pages, at least one of which is index.html
+    all pages must be accessible from all other pages through hyperlinks etc.
+    at least 10 distinct HTML tags besides <html>, <head>, <body> and <title>. Using tags (eg. <p>) multiple times still counts as just 1 of those 10.
+    Integrate one of more features from bootstrap
+    Have at least 1 stylesheet file of your own creation (styles.css), which uses at least 5 different CSS properties (i.e. font-size, margin, etc.)
+    Integrate one or more features of JavaScript into your site to make your site more interactive (i.e. add alerts at recurring interval, add interactivity to buttons, dropdowns or forms, etc.)
+    Ensure site scales to mobile and desktop browsers
+-->
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="scripts.js"></script>
+        <link href="styles.css" rel="stylesheet">
+
+        <title>toast</title>
+    </head>
+    <body>
+
+      <!-- source: https://getbootstrap.com/docs/4.0/components/navbar/ -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">toast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="about.html">about<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="orders.html">orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="quotes.html">for the love of toast</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    	<div class='container'>
+        <div class='row justify-content-center'>
+          <div class='col-12'>
+            <h1>toast</h1>
+          </div>
+        </div>
+        <div class='row justify-content-center'>
+          <div class='col-12'>
+            <h2>about</h2>
+          </div>
+        </div>
+        <div class='row justify-content-center'>
+          <div class='col-12'>
+            <p>
+              Toast is a form of bread that has been browned by toasting, that is, exposure to radiant heat. The browning is the result of a Maillard reaction, altering the flavor of the bread and making it firmer so that it is easier to spread toppings on it.
+              Toasting is a common method of making stale bread more palatable. Bread is often toasted using a toaster, but toaster ovens are also used. Pre-sliced bread is most common.
+              Toast is commonly eaten with butter or margarine, and sweet toppings, such as jam or jelly. Regionally, savory spreads, such as peanut butter or a yeast extract, may also be popular.
+              Buttered toast may also accompany savory dishes, especially soups or stews, and be topped with heartier ingredients like eggs or baked beans as a light meal. Toast is a common breakfast food.
+              Bagels and English muffins are also toasted.
+            </p>
+            <p>Source. <a href="https://en.wikipedia.org/wiki/Toast">Wikipedia</a></p>
+          </div>
+        </div>
+        <div class='row justify-content-center'>
+          <div class='col-12'>
+            <p>
+              <h2>history</h2>
+            </p>
+          </div>
+        </div>
+        <div class='row justify-content-center'>
+          <div class='col-12'>
+            <p>
+              <p>
+                The word toast comes from the Latin torrere 'to burn'. The first reference to toast in print is in a recipe for Oyle Soppys (flavoured onions stewed in a gallon of stale beer and a pint of oil) from 1430.
+                In the 1400s and 1500s, toast was discarded or eaten after it was used as a flavoring for drinks. In the 1600s, toast was still thought of as something to be put into drinks.
+                In his 1602 play The Merry Wives of Windsor, Shakespeare gives Falstaff the line: "Go fetch me a quart of sack; put a toast in't." Toast has been used as an element of American haute cuisine since at least the 1850s.
+              </p>
+              <p>Source. <a href="https://en.wikipedia.org/wiki/Toast">Wikipedia</a></p>
+            </p>
+          </div>
+        </div>
+    	</div>
+
+    </body>
+</html>
