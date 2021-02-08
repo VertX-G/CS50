@@ -84,9 +84,19 @@ $(document).ready(function() {
     setQuote(qindex, quotes);
 
     $(document).click(function(evt){
-        console.log('document clicked in ready function');
-        //if($(evt.target).closest('navbar')){
-        if($(evt.target).hasClass('navbar')){
+        console.log(evt.target);
+
+        //debugger;
+
+        //if($(evt.target).closest('navbar')){      // all clicks are navbar
+        //->if($(evt.target).hasClass('navbar')){     // only works with navbar, not children
+        //if($(evt.target).children('navbar')){     // all clicks are navbar
+        //if($(evt.target) == 'navbar'){            // no clicks are navbar
+        //if($(evt.target).hasClass('navbar').children){ // no clicks are navbar
+        //->if($(evt.target).attr('href') != undefined){ // hasAttribute is not a function
+        //if($(evt.target).hasClass('nav[\w\d-]+')){ // no clicks are navbar
+        if($(evt.target).parents('nav').length > 0 || $(evt.target).attr('href') != undefined || $(evt.target).hasClass('navbar')){       //
+
             console.log('navbar clicked');
             return;
         }
