@@ -24,7 +24,7 @@
 
         <!-- source: https://getbootstrap.com/docs/4.0/components/navbar/ -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">toast</a>
+          <a class="navbar-brand" href="index.html">toast</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class='row justify-content-center'>
-                <div class='col-lg-4 col-xs-12'>
+                <div class='col col-lg-4 d-flex justify-content-center'>
                     <form id='ordersForm'>
                         <table>
                             <tr>
@@ -97,14 +97,20 @@
                                     <label>Topping</label>
                                 </td>
                                 <td>
-                                    <div>
-                                        <input type='radio' id='cheese' name='topping' value='cheese' checked>
-                                        <label for='cheese'>cheese</label>
-                                    </div>
-                                    <div>
-                                        <input type='radio' id='berries' name='topping' value='berries' checked>
-                                        <label for='berries'>berries</label>
-                                    </div>
+                                    <fieldset>
+                                        <div>
+                                            <input type='radio' id='noTopping' name='topping' value='noTopping' checked>
+                                            <label for='noTopping'>None</label>
+                                        </div>
+                                        <div>
+                                            <input type='radio' id='cheese' name='topping' value='cheese'>
+                                            <label for='cheese'>cheese</label>
+                                        </div>
+                                        <div>
+                                            <input type='radio' id='berries' name='topping' value='berries'>
+                                            <label for='berries'>berries</label>
+                                        </div>
+                                    </fieldset>
                                     <div>
                                         <input type='checkbox' id='syrup' name='topping' value='syrup' checked>
                                         <label for='syrup'>syrup</label>
@@ -112,12 +118,18 @@
                                 </td>
                             </tr>
                         </table>
-                        <input type='submit' value='Submit Order'>
+                        <button type="button" class="btn btn-primary" id='submitOrder'>Submit Order</button>
                     </form>
                 </div>
 
-                <div class='col-lg-8 col-xs-12'>
-                    <img src='https://images.amcnetworks.com/bbcamerica.com/wp-content/uploads/2013/06/Toast.jpg' class='img-responsive center-block' alt='your toast order'>
+                <div class='col col-lg-8 d-flex justify-content-center'>
+                    <img src='data/img/plate.png' class='img-responsive w-100 position-absolute' alt='your toast order' id='imgPlate'>
+                    <img src='data/img/whiteToast.png' class='img-responsive w-100 position-absolute invisible' id='imgWhiteToast'>
+                    <img src='data/img/ciabattaToast.png' class='img-responsive w-100 position-absolute invisible' id='imgCiabattaToast'>
+                    <img src='data/img/frenchToast.png' class='img-responsive w-100 position-absolute invisible' id='imgFrenchToast'>
+                    <img src='data/img/cheese.png' class='img-responsive w-100 position-absolute invisible' id='imgCheese'>
+                    <img src='data/img/berries.png' class='img-responsive w-100 position-absolute invisible' id='imgBerries'>
+                    <img src='data/img/honey.png' class='img-responsive w-100 position-absolute invisible' id='imgHoney'>
                 </div>
             </div>
         </div>

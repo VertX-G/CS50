@@ -1,7 +1,9 @@
 
 
 $(document).ready(function() {
-    
+    $('#submitOrder').click(function() {
+        alert('Your order cannot be processed at this time.\nPlease try again in a few months time :)');
+    })
 
 })
 
