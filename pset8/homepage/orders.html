@@ -66,16 +66,18 @@
                         <table>
                             <tr>
                                 <td>
-                                    <label>Bread Type</label>
+                                    <label>Bread Type:</label>
                                 </td>
                                 <td>
                                     <select name='breads' id='breads'>
-                                        <option value='White Bread'>White Bread</option>
-                                        <option value='Ciabatta'>Ciabatta</option>
-                                        <option value='French'>French</option>
+                                        <option selected>Choose...</option>
+                                        <option value='1'>White Bread</option>
+                                        <option value='2'>Ciabatta</option>
+                                        <option value='3'>French</option>
                                     </select>
                                 </td>
                             </tr>
+                            <!--
                             <tr>
                                 <td>
                                     <label>Slices</label>
@@ -92,25 +94,24 @@
                                     <input type='range' id='toastiness' name='toastiness' min='0' max='100' value='0'>
                                 </td>
                             </tr>
+                            -->
                             <tr>
                                 <td style='vertical-align:top'>
-                                    <label>Topping</label>
+                                    <label>Toppings:</label>
                                 </td>
                                 <td>
-                                    <fieldset>
-                                        <div>
-                                            <input type='radio' id='noTopping' name='topping' value='noTopping' checked>
-                                            <label for='noTopping'>None</label>
-                                        </div>
-                                        <div>
-                                            <input type='radio' id='cheese' name='topping' value='cheese'>
-                                            <label for='cheese'>cheese</label>
-                                        </div>
-                                        <div>
-                                            <input type='radio' id='berries' name='topping' value='berries'>
-                                            <label for='berries'>berries</label>
-                                        </div>
-                                    </fieldset>
+                                    <div>
+                                        <input type='radio' id='noTopping' name='topping' value='noTopping' checked>
+                                        <label for='noTopping'>None</label>
+                                    </div>
+                                    <div>
+                                        <input type='radio' id='cheese' name='topping' value='cheese'>
+                                        <label for='cheese'>cheese</label>
+                                    </div>
+                                    <div>
+                                        <input type='radio' id='berries' name='topping' value='berries'>
+                                        <label for='berries'>berries</label>
+                                    </div>
                                     <div>
                                         <input type='checkbox' id='syrup' name='topping' value='syrup' checked>
                                         <label for='syrup'>syrup</label>

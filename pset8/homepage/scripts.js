@@ -2,8 +2,55 @@
 
 $(document).ready(function() {
     $('#submitOrder').click(function() {
-        alert('Your order cannot be processed at this time.\nPlease try again in a few months time :)');
+        var message = 'Your order of ';
+
+        var bread=$('#breads option:selected').text();
+        if (bread != 'Choose...') {
+            message += bread + ' ';
+        }
+
+        message += 'toast ';
+
+        var topping=$('#breads option:selected').text();
+        if (bread != 'Choose...') {
+            message += 'with ' + topping + ' ';
+        }
+
+        var syrup=$('#breads option:selected').text();
+        if (bread != 'Choose...') {
+            message += 'and ' + syrup + ' ';
+        }
+
+        message += 'cannot be processed at this time.\nPlease try again in a few months time :)';
+
+        alert(message);
     })
+
+    $('#breads').change(function() {
+        var selected=$('#breads option:selected').val();
+        if (selected == 1){
+            $('#imgWhiteToast').removeClass('invisible');
+            $('#imgCiabattaToast').addClass('invisible');
+            $('#imgFrenchToast').addClass('invisible');
+        }
+        else if (selected == 2){
+            $('#imgWhiteToast').addClass('invisible');
+            $('#imgCiabattaToast').removeClass('invisible');
+            $('#imgFrenchToast').addClass('invisible');
+        }
+        else if (selected == 3) {
+            $('#imgWhiteToast').addClass('invisible');
+            $('#imgCiabattaToast').addClass('invisible');
+            $('#imgFrenchToast').removeClass('invisible');
+        }
+        else {
+            $('#imgWhiteToast').addClass('invisible');
+            $('#imgCiabattaToast').addClass('invisible');
+            $('#imgFrenchToast').addClass('invisible');
+        }
+    })
+
+
 
 })
 
