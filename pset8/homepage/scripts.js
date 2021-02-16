@@ -1,6 +1,6 @@
-
-
 $(document).ready(function() {
+    $('#heroH1').fadeIn();
+
     $('#submitOrder').click(function() {
         var message = 'Your order of ';
 
@@ -11,20 +11,28 @@ $(document).ready(function() {
 
         message += 'toast ';
 
-        var topping=$('#breads option:selected').text();
-        if (bread != 'Choose...') {
+        //var topping=$('input[type=radio][name=topping]').text();
+        var topping=$('input[type=radio][name=topping]:checked')[0].value;
+        if (topping != 'None') {
             message += 'with ' + topping + ' ';
         }
+        console.log('Topping = '+topping);
 
-        var syrup=$('#breads option:selected').text();
-        if (bread != 'Choose...') {
-            message += 'and ' + syrup + ' ';
+        try {
+            var honey=$('#honey:checked')[0].value;
+            if (honey == 'honey') {
+                message += 'and ' + honey + ' ';
+            }
         }
+        catch(err) {
+
+        }
+
 
         message += 'cannot be processed at this time.\nPlease try again in a few months time :)';
 
         alert(message);
-    })
+    });
 
     $('#breads').change(function() {
         var selected=$('#breads option:selected').val();
@@ -48,11 +56,40 @@ $(document).ready(function() {
             $('#imgCiabattaToast').addClass('invisible');
             $('#imgFrenchToast').addClass('invisible');
         }
-    })
+    });
+
+    $('input[type=radio][name=topping]').change(function() {
+        var topping = this.id;
+        if (topping == 't1') {
+            $('#imgCheese').removeClass('invisible');
+            $('#imgBerries').addClass('invisible');
+        }
+        else if (topping == 't2') {
+            $('#imgCheese').addClass('invisible');
+            $('#imgBerries').removeClass('invisible');
+        }
+        else {
+            $('#imgCheese').addClass('invisible');
+            $('#imgBerries').addClass('invisible');
+        }
+    });
+
+    $('#honey').change(function() {
+        if (this.checked) {
+            $('#imgHoney').removeClass('invisible');
+        }
+        else {
+            $('#imgHoney').addClass('invisible');
+        }
+
+    });
 
 
 
-})
+
+
+
+});
 
 
 /*
