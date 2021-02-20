@@ -1,4 +1,4 @@
-
+/*
 .container {
     border: 3px solid green;
 }
@@ -8,7 +8,7 @@
 .col {
     border: 3px dotted blue;
 }
-
+*/
 .quoteBox {
     height: 100%;
 }
@@ -21,18 +21,46 @@
 .container {
 
     height: 90vh;
+    padding: 10%;
 }
 
 #heroH1 {
+    /*
     color: blue;
-    text-align: center;
-    font-weight: 900;
+    */
+    text-align: left;
+    font-weight: 700;
 }
 
 #heroH2 {
+    /*
     color: red;
-    text-align: center;
-    font-weight: 50;
+    */
+    text-align: left;
+    font-weight: 100;
+    font-size: 300%;
+}
+
+#heroContainer {
+    margin-left: 25%;
+    /*
+    border-style: none none none solid;
+    border-color: black;
+    */
+}
+
+#heroContainer:only-child {
+    padding: 10px;
+}
+
+.fadeIn {
+    opacity: 0%;
+}
+
+.leftLine {
+    border-style: none none none solid;
+    border-color: black;
+    border-width: 2px;
 }
 
 .center {
@@ -40,6 +68,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#quote {
+    text-align: right;
+    font-family: 'Brush Script MT';
+    font-size: 150%;
+}
+
+#quoteAuthor {
+    color: #4e5a65;
+}
+
+#quoteAuthor:link {
+    text-decoration: none;
+}
+
+#quoteAuthor:visited {
+    text-decoration: none;
+}
+
+#quoteAuthor:hover {
+    text-decoration: underline;
+}
+
+#quoteAuthor:active {
+    text-decoration: underline;
 }
 
 body {

@@ -28,7 +28,6 @@ $(document).ready(function() {
 
         }
 
-
         message += 'cannot be processed at this time.\nPlease try again in a few months time :)';
 
         alert(message);
@@ -84,6 +83,7 @@ $(document).ready(function() {
 
     });
 
+    setTimeout(function(){$('.fadeIn').animate({'opacity': '100%'}, 3000);}, 1000);
 
 
 

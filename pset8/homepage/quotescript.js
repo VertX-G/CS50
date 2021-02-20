@@ -111,8 +111,36 @@ $(document).ready(function() {
         }
 
         setQuote(qindex, quotes);
+
+        //$('.fadeIn').stop;
+
+        //$('.fadeIn').css({opacity: 0});
+        if ($('.fadeIn').css({opacity: 0}))
+        {
+            console.log('if entered')
+            fade();
+        }
+        else
+        {
+            $('.fadeIn').css({opacity: 0});
+        }
+        //window.fadeIt = false;
     })
 })
+
+window.fadeIt = true;
+
+function fade() {
+
+    if (!window.fadeIt) {
+        return false;
+    }
+
+    $('.fadeIn').css({opacity: 0});
+    setTimeout(function(){$('.fadeIn').animate({'opacity': '100%'}, 3000);}, 1000);
+    //$('.fadeIn').animate({'opacity': '100%'}, 3000);
+    return;
+}
 
 // inject the next quote in the array into the html code
 function setQuote(i, quotes) {
