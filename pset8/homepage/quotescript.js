@@ -1,6 +1,7 @@
-// load scripts when the document is ready
+// LOAD SCRIPTS WHEN DOCUMENT IS READY
 $(document).ready(function() {
-    // populate the array of quotes
+
+    // POPULATE ARRAY OF QUOTES
     var quotes = [
         {
         	"text": "“My hour for tea is half-past five, and my buttered toast waits for nobody.”",
@@ -85,18 +86,8 @@ $(document).ready(function() {
 
     setQuote(qindex, quotes);
 
-    // change the quote when the user clicks anywhere in the window
+    // CHANGE THE QUOTE WHEN THE USER CLICKS ANYWHERE IN THE WINDOW
     $(document).click(function(evt){
-
-        //debugger;
-
-        //if($(evt.target).closest('navbar')){      // all clicks are navbar
-        //->if($(evt.target).hasClass('navbar')){     // only works with navbar, not children
-        //if($(evt.target).children('navbar')){     // all clicks are navbar
-        //if($(evt.target) == 'navbar'){            // no clicks are navbar
-        //if($(evt.target).hasClass('navbar').children){ // no clicks are navbar
-        //->if($(evt.target).attr('href') != undefined){ // hasAttribute is not a function
-        //if($(evt.target).hasClass('nav[\w\d-]+')){ // no clicks are navbar
 
         // do not change when the user clicks anywhere in the navbar, or on an href
         if($(evt.target).hasClass('navbar') || $(evt.target).parents('nav').length > 0 || $(evt.target).attr('href') != undefined){
@@ -112,8 +103,9 @@ $(document).ready(function() {
 
         setQuote(qindex, quotes);
 
+        // STILL NEED TO FIGURE OUT HOW TO GET QUOTE AUTHOR TO KEEP FADING IN IF USER CLICKED BEFORE CURRENT FADE IN WAS COMPLETE
+        // IF YOU MANUALLY CHANGE THE OPACITY OF THE ELEMENT IN DEVELOPER TOOLBAR, IT WORKS AGAIN
         //$('.fadeIn').stop;
-
         //$('.fadeIn').css({opacity: 0});
         if ($('.fadeIn').css({opacity: 0}))
         {
@@ -128,6 +120,7 @@ $(document).ready(function() {
     })
 })
 
+// FADE ELEMENT FUNCTION
 window.fadeIt = true;
 
 function fade() {
@@ -142,15 +135,15 @@ function fade() {
     return;
 }
 
-// inject the next quote in the array into the html code
+// INJECT NEXT QUOTE INTO HTML
 function setQuote(i, quotes) {
     $('#quoteText').html(quotes[i].text);
     $('#quoteAuthor').html(quotes[i].author);
     $('#quoteAuthor').prop('href', quotes[i].ref);
 }
 
-/* https://bost.ocks.org/mike/shuffle/ */
-// shuffle the quotes array
+// SHUFFLE QUOTES ARRAY
+// https://bost.ocks.org/mike/shuffle/
 function shuffle(array) {
   var m = array.length, t, i;
 
@@ -168,17 +161,3 @@ function shuffle(array) {
 
   return array;
 };
-
-/*
-var list = []
-
-for (var i = 0; i < 15; i++)
-{
-    list.push(i);
-}
-console.log(list);
-
-shuffle(list);
-console.log(list);
-*/
-

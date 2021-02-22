@@ -23,56 +23,43 @@
 
       <title>toast</title>
     </head>
+    
     <body>
 
-        <!-- source: https://getbootstrap.com/docs/4.0/components/navbar/ -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="index.html">toast</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+      <!-- NAVBAR -->
+      <!-- source: https://getbootstrap.com/docs/4.0/components/navbar/ -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">toast</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">about</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="orders.html">orders</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="quotes.html">for the love of toast<span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-          <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">about</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="orders.html">orders</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="quotes.html">for the love of toast<span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-
+      <!-- BODY -->
     	<div class='container gx-15 center'>
-            <div class='row justify-content-center w-75 leftLine'>
-                <div class='col-12 w-75'>
-        			<p id='quoteText' style='margin-top: 1rem;'></p>
-                    <p id='quote' class='fadeIn'><a id='quoteAuthor' target="_blank" href=></a></p>
-                </div>
+        <div class='row justify-content-center w-75 leftLine'>
+            <div class='col-12 w-75'>
+    			<p id='quoteText' style='margin-top: 1rem;'></p>
+                <p id='quote' class='fadeIn'><a id='quoteAuthor' target="_blank" href=></a></p>
             </div>
-<!--
-            <div class='row justify-content-center gx-15'>
-                <div class'col-4 gx-15'>
-                    <div class='p-3'>
-                        <button type="button" class="btn btn-outline-light">prev</button>
-                    </div>
-                </div>
-                <div class'col-4 gx-15'>
-                    <div class='p-3'>
-                        <button type="button" class="btn btn-outline-light">next</button>
-                    </div>
-                </div>
-            </div>
-    	</div>
--->
-
+        </div>
+      </div>
     </body>
 </html>

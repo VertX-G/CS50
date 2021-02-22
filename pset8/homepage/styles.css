@@ -1,57 +1,11 @@
-/*
-.container {
-    border: 3px solid green;
-}
-.row {
-    border: 3px solid red;
-}
-.col {
-    border: 3px dotted blue;
-}
-*/
-
-.quoteBox {
-    height: 100%;
-}
-
-.honey {
-  opacity:1!important;
-  mix-blend-mode: multiply;
+/* ALL PAGES */
+body {
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .container {
-
     height: 90vh;
     padding: 10%;
-}
-
-#heroH1 {
-    /*
-    color: blue;
-    */
-    text-align: left;
-    font-weight: 700;
-}
-
-#heroH2 {
-    /*
-    color: red;
-    */
-    text-align: left;
-    font-weight: 100;
-    font-size: 300%;
-}
-
-#heroContainer {
-    margin-left: 25%;
-    /*
-    border-style: none none none solid;
-    border-color: black;
-    */
-}
-
-#heroContainer:only-child {
-    padding: 10px;
 }
 
 .fadeIn {
@@ -69,6 +23,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/* INDEX */
+#heroH1 {
+    text-align: left;
+    font-weight: 700;
+}
+
+#heroH2 {
+    text-align: left;
+    font-weight: 100;
+    font-size: 300%;
+}
+
+#heroContainer {
+    margin-left: 25%;
+    /*
+    border-style: none none none solid;
+    border-color: black;
+    */
+}
+
+#heroContainer:only-child {
+    padding: 10px;
+}
+
+
+/* ORDERS */
+.honey {
+  opacity:1!important;
+  mix-blend-mode: multiply;
+}
+
+
+/* QUOTES */
+.quoteBox {
+    height: 100%;
 }
 
 #quote {
@@ -97,6 +89,16 @@
     text-decoration: underline;
 }
 
-body {
-    font-family: Helvetica, Arial, sans-serif;
+
+/* TEST STYLE FOR BOOTSTRAP CONTAINERS, ROWS AND COLUMNS */
+/*
+.container {
+    border: 3px solid green;
 }
+.row {
+    border: 3px solid red;
+}
+.col {
+    border: 3px dotted blue;
+}
+*/

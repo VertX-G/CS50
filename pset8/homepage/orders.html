@@ -24,10 +24,11 @@
     </head>
     <body>
 
+        <!-- NAVBAR -->
         <!-- source: https://getbootstrap.com/docs/4.0/components/navbar/ -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="index.html">toast</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
@@ -49,8 +50,7 @@
           </div>
         </nav>
 
-
-
+        <!-- BODY -->
         <div class='container'>
             <div class='row leftLine'>
                 <div class='col-lg-4'>
@@ -104,18 +104,18 @@
                                 <td>
                                     <div>
                                         <input type='radio' id='t0' name='topping' value='None' checked>
-                                        <label for='noTopping'>None</label>
+                                        <label for='t0'>None</label>
                                     </div>
                                     <div>
                                         <input type='radio' id='t1' name='topping' value='cheese'>
-                                        <label for='cheese'>cheese</label>
+                                        <label for='t1'>cheese</label>
                                     </div>
                                     <div>
                                         <input type='radio' id='t2' name='topping' value='berries'>
-                                        <label for='berries'>berries</label>
+                                        <label for='t2'>berries</label>
                                     </div>
                                     <div>
-                                        <input type='checkbox' id='honey' name='topping' value='honey' unchecked>
+                                        <input type='checkbox' id='honey' name='topping' value='honey'>
                                         <label for='honey'>honey</label>
                                     </div>
                                 </td>
@@ -126,17 +126,16 @@
                 </div>
 
                 <div class='col-lg-8 d-flex justify-content-center'>
-                    <img src='data/img/plate.png' class='img-responsive w-100 position-absolute' alt='your toast order' id='imgPlate'>
-                    <img src='data/img/whiteToast.png' class='img-responsive w-100 position-absolute invisible' id='imgWhiteToast'>
-                    <img src='data/img/ciabattaToast.png' class='img-responsive w-100 position-absolute invisible' id='imgCiabattaToast'>
-                    <img src='data/img/frenchToast.png' class='img-responsive w-100 position-absolute invisible' id='imgFrenchToast'>
-                    <img src='data/img/cheese.png' class='img-responsive w-100 position-absolute invisible' id='imgCheese'>
-                    <img src='data/img/berries.png' class='img-responsive w-100 position-absolute invisible' id='imgBerries'>
-                    <img src='data/img/honey.png' class='img-responsive w-100 position-absolute invisible honey' id='imgHoney'>
+                    <img src='data/img/plate.png' class='img-responsive w-100 position-absolute' id='imgPlate' alt='Your toast order: The plate'>
+                    <img src='data/img/whiteToast.png' class='img-responsive w-100 position-absolute invisible' id='imgWhiteToast' alt='a slice of white bread toast'>
+                    <img src='data/img/ciabattaToast.png' class='img-responsive w-100 position-absolute invisible' id='imgCiabattaToast' alt='a slice of ciabatta toast'>
+                    <img src='data/img/frenchToast.png' class='img-responsive w-100 position-absolute invisible' id='imgFrenchToast' alt='a slice of french toast'>
+                    <img src='data/img/cheese.png' class='img-responsive w-100 position-absolute invisible' id='imgCheese' alt='some grated cheese'>
+                    <img src='data/img/berries.png' class='img-responsive w-100 position-absolute invisible' id='imgBerries' alt='a collection of berries'>
+                    <img src='data/img/honey.png' class='img-responsive w-100 position-absolute invisible honey' id='imgHoney' alt='a squeeze of honey'>
                 </div>
             </div>
         </div>
-
 
     </body>
 </html>
