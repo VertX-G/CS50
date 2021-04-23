@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- https://aws.amazon.com/ -->
+        <link href="https://a0.awsstatic.com/main/images/site/fav/favicon.ico" rel="icon">
+
+        <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" rel="stylesheet">
+
+        <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script crossorigin="anonymous" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment-with-locales.min.js"></script>
+
+        <script>
+
+            $(function() {
+
+                // When Size is clicked, display bytes instead (and ignore further clicking)
+                $('.readable.Size').click(function() {
+                    $(this).removeClass('readable').text($(this).attr('data-Size')).off();
+                });
+
+                // When LastModified is clicked, display localized ISO 8601
+                $('.readable.LastModified').click(function() {
+                    $(this).removeClass('readable').text(moment($(this).attr('data-LastModified')).format()).off();
+                });
+
+                // Display LastModified as relative time by default
+                $('.readable.LastModified').each(function(index, element) {
+                    $(this).text(moment($(this).attr('data-LastModified')).fromNow());
+                });
+            });
+
+        </script>
+
+        <style>
+
+            /* Wrap long strings */
+            * {
+                word-break: break-all;
+            }
+
+            /* Don't fill width */
+            .form-control {
+                display: initial;
+                width: initial;
+            }
+
+            /* Restore cancel button, https://github.com/twbs/bootstrap/issues/5624 */
+            input[type="search"]::-webkit-search-cancel-button {
+                -webkit-appearance: searchfield-cancel-button;
+            }
+
+            /* Small thumbnails */
+            .img-thumbnail {
+                height: 240px;
+            }
+
+            /* Make ../ easier to click */
+            .parent {
+                letter-spacing: 5px;
+            }
+
+            /* Draw attention to clickability of Size and LastModified */
+            .readable.Size:hover, .readable.LastModified:hover {
+                cursor: zoom-in;
+            }
+
+            /* Right-align Size and LastModified */
+            .Size, .LastModified {
+                text-align: right;
+            }
+
+            /* Muted */
+            .download, .highlight, .raw, .torrent, .Size, .LastModified {
+                color: #ccc;
+                font-size: smaller;
+            }
+
+            /* Hide all secondary text except Size on small screens */
+            @media only screen and (max-width: 640px) {
+                .download, .highlight, .torrent, .Size, .LastModified {
+                    display: none;
+                }
+            }
+
+            /* Move search to own line on small screens */
+            @media only screen and (max-width: 640px) {
+                input[type="search"] {
+                    display: block;
+                    margin-top: .5rem;
+                }
+            }
+
+        </style>
+
+        <title>CS50 CDN</title>
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">CS50 CDN</a>
+        </nav>
+
+        <main>
+            
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="3" scope="col">
+                    <nav aria-label="breadcrumb">
+                        
+                        <a href="./../../../../../">cdn.cs50.net/</a><a  href="./../../../../">2020/</a><a  href="./../../../">fall/</a><a  href="./../../">lectures/</a><a  href="./../">8/</a><a aria-current="page" href="./">src8/</a> <input autocomplete="off" autofocus class="form-control form-control-sm" placeholder="Search" type="search">
+                    </nav>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr data-basename="../">
+                <td colspan="3">
+                    <a class="parent" href="../">../</a>
+                </td>
+                </tr>
+            
+            
+                
+                    <tr data-basename ="api/">
+                        <td colspan="3">
+                            <a href="api/">api/</a>
+                        </td>
+                    
+                </tr>
+            
+                
+                    <tr data-basename="autocomplete.html">
+                        <td>
+                            <a class="mr-1" href="autocomplete.html">autocomplete.html</a>
+                            <a class="download mx-1" href="autocomplete.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="autocomplete.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="autocomplete.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="872">
+                            872 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="background.html">
+                        <td>
+                            <a class="mr-1" href="background.html">background.html</a>
+                            <a class="download mx-1" href="background.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="background.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="background.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="783">
+                            783 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="blink.html">
+                        <td>
+                            <a class="mr-1" href="blink.html">blink.html</a>
+                            <a class="download mx-1" href="blink.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="blink.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="blink.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="672">
+                            672 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="css0.html">
+                        <td>
+                            <a class="mr-1" href="css0.html">css0.html</a>
+                            <a class="download mx-1" href="css0.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="css0.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="css0.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="493">
+                            493 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="css1.html">
+                        <td>
+                            <a class="mr-1" href="css1.html">css1.html</a>
+                            <a class="download mx-1" href="css1.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="css1.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="css1.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="462">
+                            462 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="css2.html">
+                        <td>
+                            <a class="mr-1" href="css2.html">css2.html</a>
+                            <a class="download mx-1" href="css2.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="css2.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="css2.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="744">
+                            744 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="css3.html">
+                        <td>
+                            <a class="mr-1" href="css3.html">css3.html</a>
+                            <a class="download mx-1" href="css3.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="css3.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="css3.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="718">
+                            718 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="css4.html">
+                        <td>
+                            <a class="mr-1" href="css4.html">css4.html</a>
+                            <a class="download mx-1" href="css4.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="css4.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="css4.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="784">
+                            784 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="css5.css">
+                        <td>
+                            <a class="mr-1" href="css5.css">css5.css</a>
+                            <a class="download mx-1" href="css5.css?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="css5.css?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="css5.css?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="142">
+                            142 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="css5.html">
+                        <td>
+                            <a class="mr-1" href="css5.html">css5.html</a>
+                            <a class="download mx-1" href="css5.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="css5.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="css5.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="455">
+                            455 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="geolocation.html">
+                        <td>
+                            <a class="mr-1" href="geolocation.html">geolocation.html</a>
+                            <a class="download mx-1" href="geolocation.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="geolocation.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="geolocation.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="351">
+                            351 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="harvard.jpg">
+                        <td>
+                            <a class="mr-1" href="harvard.jpg">harvard.jpg</a>
+                            <a class="download mx-1" href="harvard.jpg?download">download</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="harvard.jpg?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="127424">
+                            127.4 KB
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="headings.html">
+                        <td>
+                            <a class="mr-1" href="headings.html">headings.html</a>
+                            <a class="download mx-1" href="headings.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="headings.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="headings.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="3502">
+                            3.5 KB
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="hello0.html">
+                        <td>
+                            <a class="mr-1" href="hello0.html">hello0.html</a>
+                            <a class="download mx-1" href="hello0.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="hello0.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="hello0.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="166">
+                            166 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="hello1.html">
+                        <td>
+                            <a class="mr-1" href="hello1.html">hello1.html</a>
+                            <a class="download mx-1" href="hello1.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="hello1.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="hello1.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="474">
+                            474 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="hello2.html">
+                        <td>
+                            <a class="mr-1" href="hello2.html">hello2.html</a>
+                            <a class="download mx-1" href="hello2.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="hello2.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="hello2.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="527">
+                            527 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="hello3.html">
+                        <td>
+                            <a class="mr-1" href="hello3.html">hello3.html</a>
+                            <a class="download mx-1" href="hello3.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="hello3.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="hello3.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="598">
+                            598 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="hello4.html">
+                        <td>
+                            <a class="mr-1" href="hello4.html">hello4.html</a>
+                            <a class="download mx-1" href="hello4.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="hello4.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="hello4.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="314">
+                            314 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="hello4.js">
+                        <td>
+                            <a class="mr-1" href="hello4.js">hello4.js</a>
+                            <a class="download mx-1" href="hello4.js?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="hello4.js?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="hello4.js?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="217">
+                            217 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="hello5.html">
+                        <td>
+                            <a class="mr-1" href="hello5.html">hello5.html</a>
+                            <a class="download mx-1" href="hello5.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="hello5.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="hello5.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="832">
+                            832 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="image.html">
+                        <td>
+                            <a class="mr-1" href="image.html">image.html</a>
+                            <a class="download mx-1" href="image.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="image.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="image.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="295">
+                            295 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="large.js">
+                        <td>
+                            <a class="mr-1" href="large.js">large.js</a>
+                            <a class="download mx-1" href="large.js?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="large.js?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="large.js?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="2297789">
+                            2.3 MB
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:24+00:00">
+                            2020-11-29 02:50:24+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="link0.html">
+                        <td>
+                            <a class="mr-1" href="link0.html">link0.html</a>
+                            <a class="download mx-1" href="link0.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="link0.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="link0.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="191">
+                            191 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="link1.html">
+                        <td>
+                            <a class="mr-1" href="link1.html">link1.html</a>
+                            <a class="download mx-1" href="link1.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="link1.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="link1.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="205">
+                            205 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="link2.html">
+                        <td>
+                            <a class="mr-1" href="link2.html">link2.html</a>
+                            <a class="download mx-1" href="link2.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="link2.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="link2.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="422">
+                            422 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="link3.html">
+                        <td>
+                            <a class="mr-1" href="link3.html">link3.html</a>
+                            <a class="download mx-1" href="link3.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="link3.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="link3.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="644">
+                            644 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="list.html">
+                        <td>
+                            <a class="mr-1" href="list.html">list.html</a>
+                            <a class="download mx-1" href="list.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="list.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="list.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="259">
+                            259 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="paragraphs0.html">
+                        <td>
+                            <a class="mr-1" href="paragraphs0.html">paragraphs0.html</a>
+                            <a class="download mx-1" href="paragraphs0.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="paragraphs0.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="paragraphs0.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="3322">
+                            3.3 KB
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="paragraphs1.html">
+                        <td>
+                            <a class="mr-1" href="paragraphs1.html">paragraphs1.html</a>
+                            <a class="download mx-1" href="paragraphs1.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="paragraphs1.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="paragraphs1.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="3450">
+                            3.5 KB
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="paragraphs2.html">
+                        <td>
+                            <a class="mr-1" href="paragraphs2.html">paragraphs2.html</a>
+                            <a class="download mx-1" href="paragraphs2.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="paragraphs2.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="paragraphs2.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="3446">
+                            3.4 KB
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="responsive.html">
+                        <td>
+                            <a class="mr-1" href="responsive.html">responsive.html</a>
+                            <a class="download mx-1" href="responsive.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="responsive.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="responsive.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="804">
+                            804 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="search.html">
+                        <td>
+                            <a class="mr-1" href="search.html">search.html</a>
+                            <a class="download mx-1" href="search.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="search.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="search.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="323">
+                            323 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="size.html">
+                        <td>
+                            <a class="mr-1" href="size.html">size.html</a>
+                            <a class="download mx-1" href="size.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="size.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="size.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="1211">
+                            1.2 KB
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:19+00:00">
+                            2020-11-29 02:50:19+00:00
+                        </td>
+                
+                </tr>
+            
+                
+                    <tr data-basename="table.html">
+                        <td>
+                            <a class="mr-1" href="table.html">table.html</a>
+                            <a class="download mx-1" href="table.html?download">download</a></small>
+                            
+                                <a class="highlight mx-1" href="table.html?highlight">highlight</a></small>
+                            
+                            
+                                <a class="torrent mx-1" href="table.html?torrent">torrent</a></small>
+                            
+                        </td>
+                        <td class="readable Size" data-Size="643">
+                            643 B
+                        </td>
+                        <td class="readable LastModified" data-LastModified="2020-11-29 02:50:20+00:00">
+                            2020-11-29 02:50:20+00:00
+                        </td>
+                
+                </tr>
+            
+        </tbody>
+    </table>
+
+    <script>
+
+        // Populate input's value from hash
+        $('input').val(window.location.hash.substring(1));
+
+        // Filter rows
+        $('input').on('keyup search', function() {
+
+            // Get input's value
+            const value = $(this).val().trim().toLowerCase();
+
+            // Store input's value in hash
+            if (value) {
+                window.location.hash = value;
+            }
+            else {
+                window.location.hash = '';
+            }
+
+            // Iterate over rows with basenames
+            $('tr[data-basename]').each(function(index, element) {
+
+                // Show if matched
+                if (!value || $(this).attr('data-basename').toLowerCase().indexOf(value) !== -1) {
+                    $(this).show();
+                }
+
+                // Hide if not matched
+                else {
+                    $(this).hide();
+                }
+            });
+
+            // Re-stripe table
+            // https://stackoverflow.com/a/52553884/5156190
+            $('tbody tr:visible').each(function(index) {
+                $(this).css('background-color', !!(index & 1) ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,.05)');
+            });
+        }).trigger('search');
+
+    </script>
+
+
+        </main>
+
+    </body>
+
+</html>
